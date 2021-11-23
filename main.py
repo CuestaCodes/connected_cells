@@ -38,14 +38,12 @@ def find_connected_cells(data_set,
     :type upper_limit: float or int
 
     :param lower_limit: lower value limit for a cell to be considered
-    as a connected cell.
+    as a connected cell
 
     :type lower_limit: float or int
 
-    :raises ValueError: If connected_type is neither "surface_area" or "catchment"
-
-    :raises ValueError: If connected_type is "surface_area" and no
-    lower_elevation_limit is provided
+    :raises ValueError: if upper_limit or lower_limit are neither float or int
+    data types
 
     :return connected_cells: A set of all the coordinates of the connected cells
     as tuples, in the from (x, y)
