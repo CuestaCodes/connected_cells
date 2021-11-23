@@ -42,14 +42,13 @@ def find_connected_cells(data_set,
 
     :type lower_limit: float or int
 
-    :raises ValueError: if upper_limit or lower_limit are neither float or int
-    data types
-
     :return connected_cells: A set of all the coordinates of the connected cells
     as tuples, in the from (x, y)
 
     :rtype connected_cells: set
     """
+    data_set = read_dataset(data_set)
+
     grid_width, grid_height = get_grid_width_height(data_set)
 
     check_x_y_coordinates(x_coordinate, y_coordinate, grid_width, grid_height)
