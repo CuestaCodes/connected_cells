@@ -11,18 +11,18 @@ def find_connected_cells(data_set,
                          x_coordinate,
                          y_coordinate,
                          upper_limit,
+                         lower_limit,
                          # ELEVATION_TOLERANCE LEVEL not documented
                          ELEVATION_TOLERANCE_LEVEL,
-                         lower_limit=None,
-                         connected_type="surface_area"):
+                         ):
     """
     Finds all connected cells within a numerical grid data set in a csv file
     format, starting from a single point using an upper and lower limit.
 
 
-    :param data_set: A DataFrame object containing numpy.float64 values
+    :param data_set: The file path of a CSV file
 
-    :type data_set: pandas.core.frame.DataFrame
+    :type data_set: str
 
     :param x_coordinate: The column of the starting point in data_set
 
@@ -35,20 +35,12 @@ def find_connected_cells(data_set,
     :param upper_limt: upper value limit for a cell to be considered
     as a connected cell
 
-    :type upper_limit: numpy.float64
+    :type upper_limit: float or int
 
     :param lower_limit: lower value limit for a cell to be considered
-    as a connected cell. Defaults to None, a value needs to be provided if the
-    connect_type is "surface_area"
+    as a connected cell.
 
-    :type lower_limit: numpy.float64 or NoneType
-
-    :param connected_type: Either "surface_area" or "catchment". "surface_area"
-    uses the lower_elevation_limit provided to the function whereas, "catchment"
-    calculates a lower_elevation_limit based on each cell checked. Defaults to
-    "surface_area" 
-
-    :type connected_type: str
+    :type lower_limit: float or int
 
     :raises ValueError: If connected_type is neither "surface_area" or "catchment"
 
