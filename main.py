@@ -7,7 +7,7 @@ app = typer.Typer()
 
 
 @app.command()
-def find_connected_cells(data_set,
+def find_connected_cells(file,
                          x_coordinate,
                          y_coordinate,
                          upper_limit,
@@ -20,9 +20,9 @@ def find_connected_cells(data_set,
     format, starting from a single point using an upper and lower limit.
 
 
-    :param data_set: The file path of a CSV file
+    :param file: The file path of a CSV file
 
-    :type data_set: str
+    :type file: str
 
     :param x_coordinate: The column of the starting point in data_set
 
@@ -47,7 +47,7 @@ def find_connected_cells(data_set,
 
     :rtype connected_cells: set
     """
-    data_set = read_dataset(data_set)
+    data_set = read_data_set(file)
 
     grid_width, grid_height = get_grid_width_height(data_set)
 
@@ -113,7 +113,7 @@ def find_connected_cells(data_set,
     return connected_cells
 
 
-def read_dataset(file):
+def read_data_set(file):
     """
     Reads a comma-separated values (CSV) file of numbers into a DataFrame.
 
