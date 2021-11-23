@@ -16,8 +16,8 @@ def find_connected_cells(data_set,
                          lower_limit=None,
                          connected_type="surface_area"):
     """
-    Finds all connected cells within a numerical grid data set in a csv file,
-    starting from a single point using an upper and lower limit.
+    Finds all connected cells within a numerical grid data set in a csv file
+    format, starting from a single point using an upper and lower limit.
 
 
     :param data_set: A DataFrame object containing numpy.float64 values
