@@ -16,7 +16,8 @@ def find_connected_cells(file,
     """
     Finds all connected cells within a numerical grid data set in a csv file
     format, starting from a single point using an upper and lower limit. A
-    breadth first search algorithm is adopted to achieve this.
+    breadth first search algorithm is adopted to achieve this. A basic command
+    line visulisation is used to display the connected cells in the grid.
 
 
     :param file: The file path of a CSV file
@@ -89,6 +90,7 @@ def find_connected_cells(file,
 
     print(data_set)
 
+    print("Loaded data set")
     input("Press Enter to continue...")
 
     data_set_coordinate = data_set.copy()
@@ -98,6 +100,7 @@ def find_connected_cells(file,
     print(data_set_coordinate)
     data_set_coordinate[x_coordinate][y_coordinate]
 
+    print("Target cell marked with X")
     input("Press Enter to continue...")
 
     while queue:
@@ -149,6 +152,9 @@ def find_connected_cells(file,
         data_set_neighbours.iloc[y, x] = "*" + \
             str(data_set_neighbours.iloc[y, x]) + "*"
     print(data_set_neighbours)
+
+    print("Connected cells circumfixed by *")
+    input("Press Enter to exit...")
 
     return connected_cells
 
@@ -213,3 +219,5 @@ def get_grid_width_height(data_set):
 
 if __name__ == "__main__":
     app()
+    # example run of program
+    # python ./main.py num_grid_test.csv 3 1 3 3
