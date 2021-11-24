@@ -12,8 +12,6 @@ def find_connected_cells(file,
                          y_coordinate,
                          upper_limit,
                          lower_limit,
-                         # ELEVATION_TOLERANCE LEVEL not documented
-                         ELEVATION_TOLERANCE_LEVEL,
                          ):
     """
     Finds all connected cells within a numerical grid data set in a csv file
@@ -53,15 +51,6 @@ def find_connected_cells(file,
 
     check_x_y_coordinates(x_coordinate, y_coordinate, grid_width, grid_height)
 
-    connected_types = ["surface_area", "catchment"]
-
-    if connected_type not in connected_types:
-        raise ValueError("connected_type must be either: %s" % connected_types)
-
-    if connected_type == "surface_area" and lower_limit == None:
-        raise ValueError(
-            'Must include lower_elevation_limit parameter if using type: "surface_area"')
-
     connected_cells = set([(x_coordinate, y_coordinate)])
 
     # queue for iterating through each connected cell
@@ -96,9 +85,6 @@ def find_connected_cells(file,
         if y > 0:
             # top cell
             neighbours.append((x, y - 1))
-
-        if connected_type == "catchment":
-            lower_limit = data_set[x][y] - ELEVATION_TOLERANCE_LEVEL
 
         for coordinates_tuple in neighbours:
             if (
