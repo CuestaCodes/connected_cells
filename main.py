@@ -24,21 +24,21 @@ def find_connected_cells(file,
 
     :param x_coordinate: The column of the starting point in data_set
 
-    :type x_coordinate: int
+    :type x_coordinate: numerical
 
     :param y_coordinate: The row of the starting point in the data_set
 
-    :type y_coordinate: int
+    :type y_coordinate: numerical
 
     :param upper_limt: upper value limit for a cell to be considered
     as a connected cell
 
-    :type upper_limit: float or int
+    :type upper_limit: numerical
 
     :param lower_limit: lower value limit for a cell to be considered
     as a connected cell
 
-    :type lower_limit: float or int
+    :type lower_limit: numerical
 
     :return connected_cells: A set of all the coordinates of the connected cells
     as tuples, in the from (x, y)
@@ -49,7 +49,19 @@ def find_connected_cells(file,
 
     grid_width, grid_height = get_grid_width_height(data_set)
 
+    try:
+        x_coordinate = int(x_coordinate)
+        y_coordinate = int(y_coordinate)
+    except:
+        raise ValueError("x_coordinate and y_coordinate must be the type int")
+
     check_x_y_coordinates(x_coordinate, y_coordinate, grid_width, grid_height)
+
+    try:
+        lower_limit = float(lower_limit)
+        upper_limit = float(upper_limit)
+    except:
+        raise ValueError("upper_limit and lower_limit must be a number")
 
     connected_cells = set([(x_coordinate, y_coordinate)])
 
@@ -164,11 +176,11 @@ def check_x_y_coordinates(x_coordinate, y_coordinate, grid_width, grid_height):
     respectively by raisng ValueErrors if otherwise.
 
 
-    :param x_coordinate: value to be checked
+    :param x_coordinate: x coordinate to be checked
 
     :type x_coordinate: int
 
-    :param y_coordinate: value to be checked
+    :param y_coordinate: y coordinate to be checked
 
     :type y_coordinate: int
 
@@ -180,8 +192,6 @@ def check_x_y_coordinates(x_coordinate, y_coordinate, grid_width, grid_height):
 
     :type grid_height: int
 
-    :raises ValueError: If either x_coordinate or y_coordinate are not type int
-
     :raises ValueError: If either x_coordinate or y_coordinate are greater than
     grid_width or grid_height, respectively
 
@@ -189,9 +199,6 @@ def check_x_y_coordinates(x_coordinate, y_coordinate, grid_width, grid_height):
 
     :rtype: NoneType
     """
-    if type(x_coordinate) is not int or type(y_coordinate) is not int:
-        raise ValueError("x_coordinate and y_coordinate must be the type int")
-
     if x_coordinate > grid_width or y_coordinate > grid_height:
         raise ValueError(
             "x_coordinate and y_coordinate must be within data_set index bounds")
