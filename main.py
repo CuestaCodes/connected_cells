@@ -22,23 +22,25 @@ def find_connected_cells(file,
 
     :type file: str
 
-    :param x_coordinate: The column of the starting point in data_set
+    :param x_coordinate: The column of the starting point in data_set starting
+    from 0
 
-    :type x_coordinate: numerical
+    :type x_coordinate: int
 
-    :param y_coordinate: The row of the starting point in the data_set
+    :param y_coordinate: The row of the starting point in the data_set starting
+    from 0
 
-    :type y_coordinate: numerical
+    :type y_coordinate: int
 
     :param upper_limt: upper value limit for a cell to be considered
     as a connected cell relative to the center cell
 
-    :type upper_limit: numerical
+    :type upper_limit: numerical - int or float
 
     :param lower_limit: lower value limit for a cell to be considered
     as a connected cell relative to the center cell
 
-    :type lower_limit: numerical
+    :type lower_limit: numerical - int or float
 
     :return connected_cells: A set of all the coordinates of the connected cells
     as tuples, in the from (x, y)
@@ -68,12 +70,17 @@ def find_connected_cells(file,
     # queue for iterating through each connected cell
     queue = deque([(x_coordinate, y_coordinate)])
 
+    # set to ensure visted cells are not re-visited
+    visited = set()
+
     while queue:
         x, y = queue.popleft()
+        visited.add((x, y))
         neighbours = []
 
-        # add all neighbouring cells of current cell to neighbours considering
-        # if either x or y coordinates are on the edge of the grid
+        # add all neighbouring cells including diagonally of current cell to
+        # neighbours considering if either x or y coordinates are on the edge of
+        # the grid
         if x < grid_width:
             # right cell
             neighbours.append((x + 1, y))
@@ -101,6 +108,7 @@ def find_connected_cells(file,
         for coordinates_tuple in neighbours:
             if (
                 coordinates_tuple not in connected_cells
+                and coordinates_tuple not in connected_cells
                 and (data_set[x][y] - lower_limit)
                 <= data_set[coordinates_tuple[0]][coordinates_tuple[1]]
                 <= (data_set[x][y] + upper_limit)
