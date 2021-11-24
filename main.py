@@ -73,6 +73,21 @@ def find_connected_cells(file,
     # set to ensure visted cells are not re-visited
     visited = set()
 
+    # Showing user loaded dataframe
+
+    print(data_set)
+
+    input("Press Enter to continue...")
+
+    data_set_coordinate = data_set.copy()
+    data_set_coordinate.iloc[y_coordinate, x_coordinate] = str(
+        data_set_coordinate.iloc[y_coordinate, x_coordinate]) + "X"
+
+    print(data_set_coordinate)
+    data_set_coordinate[x_coordinate][y_coordinate]
+
+    input("Press Enter to continue...")
+
     while queue:
         x, y = queue.popleft()
         visited.add((x, y))
@@ -115,6 +130,13 @@ def find_connected_cells(file,
             ):
                 connected_cells.add(coordinates_tuple)
                 queue.append(coordinates_tuple)
+
+    data_set_neighbours = data_set_coordinate.copy()
+
+    for (x, y) in connected_cells:
+        data_set_neighbours.iloc[y, x] = "*" + \
+            str(data_set_neighbours.iloc[y, x]) + "*"
+    print(data_set_neighbours)
 
     return connected_cells
 
