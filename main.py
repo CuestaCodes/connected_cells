@@ -31,12 +31,12 @@ def find_connected_cells(file,
     :type y_coordinate: numerical
 
     :param upper_limt: upper value limit for a cell to be considered
-    as a connected cell
+    as a connected cell relative to the center cell
 
     :type upper_limit: numerical
 
     :param lower_limit: lower value limit for a cell to be considered
-    as a connected cell
+    as a connected cell relative to the center cell
 
     :type lower_limit: numerical
 
@@ -101,9 +101,9 @@ def find_connected_cells(file,
         for coordinates_tuple in neighbours:
             if (
                 coordinates_tuple not in connected_cells
-                and lower_limit
+                and (data_set[x][y] - lower_limit)
                 <= data_set[coordinates_tuple[0]][coordinates_tuple[1]]
-                <= upper_limit
+                <= (data_set[x][y] + upper_limit)
             ):
                 connected_cells.add(coordinates_tuple)
                 queue.append(coordinates_tuple)
