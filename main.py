@@ -15,7 +15,8 @@ def find_connected_cells(file,
                          ):
     """
     Finds all connected cells within a numerical grid data set in a csv file
-    format, starting from a single point using an upper and lower limit.
+    format, starting from a single point using an upper and lower limit. A
+    breadth first search algorithm is adopted to achieve this.
 
 
     :param file: The file path of a CSV file
@@ -42,6 +43,15 @@ def find_connected_cells(file,
 
     :type lower_limit: numerical - int or float
 
+    :raises ValueError: If either x_coordinate or y_coordinate cannot be casted
+    into type int
+
+    :raises ValueError: If either x_coordinate or y_coordinate are greater than
+    grid_width or grid_height, respectively
+
+    :raises ValueError: If either lower_limit or upper_limit cannot be casted
+    into type float
+
     :return connected_cells: A set of all the coordinates of the connected cells
     as tuples, in the from (x, y)
 
@@ -57,7 +67,9 @@ def find_connected_cells(file,
     except:
         raise ValueError("x_coordinate and y_coordinate must be the type int")
 
-    check_x_y_coordinates(x_coordinate, y_coordinate, grid_width, grid_height)
+    if x_coordinate > grid_width or y_coordinate > grid_height:
+        raise ValueError(
+            "x_coordinate and y_coordinate must be within data_set index bounds")
 
     try:
         lower_limit = float(lower_limit)
@@ -197,41 +209,6 @@ def get_grid_width_height(data_set):
     width = data_set.shape[1] - 1
     height = data_set.shape[0] - 1
     return width, height
-
-
-def check_x_y_coordinates(x_coordinate, y_coordinate, grid_width, grid_height):
-    """
-    Checks that the parameters x_coordinate and y_coordinate are the type int
-    and that they are within the bounds of a grid_width and grid_height,
-    respectively by raisng ValueErrors if otherwise.
-
-
-    :param x_coordinate: x coordinate to be checked
-
-    :type x_coordinate: int
-
-    :param y_coordinate: y coordinate to be checked
-
-    :type y_coordinate: int
-
-    :param grid_width: maximum value of x_coordinate
-
-    :type grid_width: int
-
-    :param grid_height: maximum value of y_coordinate
-
-    :type grid_height: int
-
-    :raises ValueError: If either x_coordinate or y_coordinate are greater than
-    grid_width or grid_height, respectively
-
-    :return: None
-
-    :rtype: NoneType
-    """
-    if x_coordinate > grid_width or y_coordinate > grid_height:
-        raise ValueError(
-            "x_coordinate and y_coordinate must be within data_set index bounds")
 
 
 if __name__ == "__main__":
