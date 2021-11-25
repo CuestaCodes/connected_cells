@@ -1,12 +1,9 @@
-import typer
+import sys
 import pandas as pd
 import numpy as np
 from collections import deque
 
-app = typer.Typer()
 
-
-@app.command()
 def find_connected_cells(file,
                          x_coordinate,
                          y_coordinate,
@@ -218,6 +215,13 @@ def get_grid_width_height(data_set):
 
 
 if __name__ == "__main__":
-    app()
+    if len(sys.argv) != 6:
+        raise ValueError(
+            "The program..."
+        )
+
+    find_connected_cells(sys.argv[1], sys.argv[2],
+                         sys.argv[3], sys.argv[4], sys.argv[5])
+    # app()
     # example run of program
     # python ./main.py num_grid_test.csv 3 1 3 3
