@@ -216,12 +216,12 @@ def get_grid_width_height(data_set):
 
 if __name__ == "__main__":
     if len(sys.argv) != 6:
+        help(find_connected_cells)
         raise ValueError(
-            "The program..."
+            "The program uses the find_connected_cells() function and was run with the incorrect"
+            " number of arguments. \n See an example running this program with the correct"
+            " number of arguments below: \n python3 ./main.py ./num_grid_test.csv 3 1 3 3"
         )
 
     find_connected_cells(sys.argv[1], sys.argv[2],
                          sys.argv[3], sys.argv[4], sys.argv[5])
-    # app()
-    # example run of program
-    # python ./main.py num_grid_test.csv 3 1 3 3
