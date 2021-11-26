@@ -80,9 +80,6 @@ def find_connected_cells(file,
     # queue for iterating through each connected cell
     queue = deque([(x_coordinate, y_coordinate)])
 
-    # set to ensure visted cells are not re-visited
-    visited = set()
-
     # Showing user loaded dataframe
 
     print(data_set)
@@ -102,7 +99,6 @@ def find_connected_cells(file,
 
     while queue:
         x, y = queue.popleft()
-        visited.add((x, y))
         neighbours = []
 
         # add all neighbouring cells including diagonally of current cell to
