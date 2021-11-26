@@ -80,23 +80,6 @@ def find_connected_cells(file,
     # queue for iterating through each connected cell
     queue = deque([(x_coordinate, y_coordinate)])
 
-    # Showing user loaded dataframe
-
-    print(data_set)
-
-    print("Loaded data set")
-    input("Press Enter to continue...")
-
-    data_set_coordinate = data_set.copy()
-    data_set_coordinate.iloc[y_coordinate, x_coordinate] = str(
-        data_set_coordinate.iloc[y_coordinate, x_coordinate]) + "X"
-
-    print(data_set_coordinate)
-    data_set_coordinate[x_coordinate][y_coordinate]
-
-    print("Target cell marked with X")
-    input("Press Enter to continue...")
-
     while queue:
         x, y = queue.popleft()
         neighbours = []
@@ -139,6 +122,23 @@ def find_connected_cells(file,
                 connected_cells.add(coordinates_tuple)
                 queue.append(coordinates_tuple)
 
+    # Showing user loaded data set as a DataFrame, target cell and connected
+    # cells
+    # REMOVE FOLLOWING LINES IF VISUALISATION IS NOT REQUIRED
+    print(data_set)
+
+    print("Loaded data set")
+    input("Press Enter to continue...")
+
+    data_set_coordinate = data_set.copy()
+    data_set_coordinate.iloc[y_coordinate, x_coordinate] = str(
+        data_set_coordinate.iloc[y_coordinate, x_coordinate]) + "X"
+
+    print(data_set_coordinate)
+    data_set_coordinate[x_coordinate][y_coordinate]
+
+    print("Target cell marked with X")
+    input("Press Enter to continue...")
     data_set_neighbours = data_set_coordinate.copy()
 
     for (x, y) in connected_cells:
