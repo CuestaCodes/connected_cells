@@ -5,18 +5,18 @@ The Program
 This is an implementation of a breadth first search algorithm in order to find all connected cells within a 2D numerical matrix in the format
 of a .csv file.
 
-It uses a user-defined starting coordinate within the matrix as the beginning target cell - the first connected cell.
+It uses a user-defined starting coordinate within the matrix as the beginning target cell.
 
 All neighbouring cells (adjacent and diagonal) are checked to see if they are within the range of a user-defined upper limit and lower limit
-relative to the target cell. If so, the cell added to the set of connected cells. For example, if the target cell has a value of 5 and the 
-upper limit and lower limit is set to 1, a neighbouring cell has to have a value within 4 - 6 to be considered a connected cell.
+relative to the target cell. If so, the neighbouring is cell added to the set of connected cells. For example, if the target cell has a value 
+of 5 and the upper limit and lower limit are set to 1, a neighbouring cell has to have a value within 4 - 6 to be considered a connected cell.
 
-Each newly added connected cell are each individually considered as the new target cell. The process repeats until all connected cells have
-had their neighbouring cells check and there are no more new connected cells.
+Each newly added connected cell is considered as the new target cell. The process repeats until all connected cells have
+had their neighbouring cells checked and there are no more new connected cells.
 
-A basic command line visualisation is used to display the connected cells in the input. Even though this program is optimised for large data sets,
-the visualisation is only useful for small datasets and the corresponding code should be removed if the dataset is much bigger than the example
-num_grid_test.csv provided.
+A basic command line visualisation is used to display the connected cells in the input numerical matrix. Even though this program is optimised 
+for large data sets, the visualisation is only useful for small data sets and the corresponding code should be removed if a data set is much 
+bigger than the example num_grid_test.csv provided.
 
 How To Use This
 ---------------
